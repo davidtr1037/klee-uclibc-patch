@@ -323,7 +323,8 @@ def handleNativeConfig(pargs, cc=None):
     tools = { 'LINKER':'ld',
               'ARCHIVER':'ar',
               'NM':'nm',
-              'OBJDUMP':'objdump'
+              'OBJDUMP':'objdump',
+              'OPT':'opt',
             }
     for (name, executable) in tools.items():
         if not getAbsPathForToolInPathEnv(executable):
@@ -383,7 +384,8 @@ def handleLLVMConfig(pargs, cc=None):
         'NM' : ['llvm-nm'],
         'ARCHIVER' : ['llvm-ar'],
         'LINKER': ['llvm-link', 'llvm-ld' ], # Two possible tools to use as linker
-        'OBJDUMP': ['llvm-objdump']
+        'OBJDUMP': ['llvm-objdump'],
+        'OPT': ['opt'],
     }
 
     for (name,toolNames) in llvmDeps.items():
