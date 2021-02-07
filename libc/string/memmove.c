@@ -16,6 +16,18 @@ libc_hidden_proto(memmove)
 
 Wvoid *Wmemmove(Wvoid *s1, const Wvoid *s2, size_t n)
 {
+    if (s2 >= s1) {
+        for (unsigned i = 0; i < n; i++) {
+            ((Wchar *)(s1))[i] = ((Wchar *)(s2))[i];
+        }
+    } else {
+        for (unsigned i = 0; i < n; i++) {
+            ((Wchar *)(s1))[n - i - 1] = ((Wchar *)(s2))[n - i - 1];
+        }
+    }
+    return s1;
+
+#if 0
 #ifdef __BCC__
 	register Wchar *s = (Wchar *) s1;
 	register const Wchar *p = (const Wchar *) s2;
@@ -50,6 +62,7 @@ Wvoid *Wmemmove(Wvoid *s1, const Wvoid *s2, size_t n)
 	}
 
 	return s1;
+#endif
 #endif
 }
 

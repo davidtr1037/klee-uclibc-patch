@@ -17,10 +17,18 @@ libc_hidden_proto(Wstrlen)
 
 size_t Wstrlen(const Wchar *s)
 {
+	register unsigned i;
+	for (i = 0 ; s[i]; i++) {
+
+	}
+	return i;
+
+#if 0
 	register const Wchar *p;
 
 	for (p=s ; *p ; p++);
 
 	return p - s;
+#endif
 }
 libc_hidden_def(Wstrlen)

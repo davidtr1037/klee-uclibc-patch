@@ -17,6 +17,15 @@ libc_hidden_proto(Wstrchr)
 
 Wchar *Wstrchr(register const Wchar *s, Wint c)
 {
+    unsigned i = 0;
+    do {
+        if (s[i] == ((Wchar)(c))) {
+            return (Wchar *)(s + i);
+        }
+    } while (s[i++]);
+    return NULL;
+
+#if 0
 	do {
 		if (*s == ((Wchar)c)) {
 			return (Wchar *) s;	/* silence the warning */
@@ -24,6 +33,7 @@ Wchar *Wstrchr(register const Wchar *s, Wint c)
 	} while (*s++);
 
 	return NULL;
+#endif
 }
 libc_hidden_def(Wstrchr)
 

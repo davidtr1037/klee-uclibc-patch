@@ -17,6 +17,13 @@ libc_hidden_proto(Wstrcpy)
 
 Wchar *Wstrcpy(Wchar * __restrict s1, const Wchar * __restrict s2)
 {
+    unsigned i = 0;
+    do {
+        s1[i] = s2[i];
+    } while (s1[i++] != 0);
+    return s1;
+
+#if 0
 	register Wchar *s = s1;
 
 #ifdef __BCC__
@@ -28,5 +35,6 @@ Wchar *Wstrcpy(Wchar * __restrict s1, const Wchar * __restrict s2)
 #endif
 
 	return s1;
+#endif
 }
 libc_hidden_def(Wstrcpy)
